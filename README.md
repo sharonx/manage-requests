@@ -10,3 +10,7 @@ Create a management console that enables viewing, creating and updating the buil
  - As a user, I can mark my build request to have high priority
  - As a user, I can revoke a new request
  
+## Run the project
+ 1. git clone this project and go to the project folder
+ 2. Run `npm install` to install app dependencies
+ 3. Run `npm start` to build the TypeScript, watch for changes and launch the web server
