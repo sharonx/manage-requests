@@ -1,0 +1,20 @@
+<div class="customers view indent">
+    <div class="container">
+        <br/>
+        <new-request (onRequestSubmit)="onRequestSubmit($event)"></new-request>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="navbar">
+                    <!--<button class="btn btn-default" (click)="addNewRequest()">Add Request</button>-->
+                    <filter-textbox class="navbar-right"
+                     (changed)="filterChanged($event)"></filter-textbox>
+                </div>
+            </div>
+        </div>
+    
+        <requests-grid 
+          [requests]="filteredRequests">
+       </requests-grid>
+          
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row grid-container">
+        <div class="col-md-10">
+            <div class="table">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th sort-by="time" (sorted)="sort($event)">Request Time</th>
+                            <th sort-by="requester" (sorted)="sort($event)">Requester</th>
+                            <th sort-by="repos" (sorted)="sort($event)">Repos</th>
+                            <th sort-by="verifyDetails" (sorted)="sort($event)">Verify</th>
+                            <th sort-by="isEmerygency" (sorted)="sort($event)">Urgency</th>
+                            <!-- Or you can do this directly rather than using sort-by directive -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let request of requests">
+                            <td><a [routerLink]="['/',request.id,'details']">{{ request.requestTime }}</a></td>
+                            <td>{{ request.requester }}</td>
+                            <td>{{ request.repos}}</td>
+                            <td>{{ request.verifyDetails }}</td>
+                            <td>{{ request.isUrgent }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
