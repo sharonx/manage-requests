@@ -8,6 +8,7 @@ import { FilterTextboxComponent } from '../filterTextbox/filterTextbox.component
 import { RequestsGridComponent } from './requestsGrid.component'
 import { newRequestComponent } from './newRequest.component'
 import { IRequests } from '../shared/interfaces';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({ 
   moduleId: module.id,
@@ -23,49 +24,27 @@ export class RequestsComponent implements OnInit {
   requests: IRequests[] = [];
   filteredRequests: IRequests[] = [];
   public realClose: Function;
-  
+  items: FirebaseListObservable<any[]>;
   
   @ViewChild(newRequestComponent) newRequest: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, af: AngularFire) { 
+    
+    this.items = af.database.list('/items');
+  }
   
   ngOnInit() {
     this.title = 'Requests';
     this.filterText = 'Filter Requests:';
-
-   
-    this.dataService.getRequests()
-        .subscribe((requests: IRequests[]) => {
-          this.requests = requests;
-          this.filteredRequests = requests;
-        });
   }
 
 
   onRequestSubmit(newRequest: any){
-    this.requests = this.requests.concat(newRequest);
-    this.filteredRequests = this.requests;
+     this.items.push(newRequest);
   }
   
   filterChanged(data: string) {
-    if (data && this.requests) {
-        data = data.toUpperCase();
-        let props = ['requester', 'verifyDetails'];
-        let filtered = this.requests.filter(item => {
-            let match = false;
-            for (let prop of props) {
-                if (item[prop].toString().toUpperCase().indexOf(data) > -1) {
-                  match = true;
-                  break;
-                }
-            };
-            return match;
-        });
-        this.filteredRequests = filtered;
-    }
-    else {
-      this.filteredRequests = this.requests;
-    }
+    
   }
 
 }

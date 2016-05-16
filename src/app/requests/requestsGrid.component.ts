@@ -18,18 +18,20 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class RequestsGridComponent implements OnInit {
 
-  @Input() requests: any[] = [];
-  items: FirebaseListObservable<any[]>;
-  constructor(private sorter: Sorter, af: AngularFire) {
-    this.items = af.database.list('/items');
+  @Input() requests: FirebaseListObservable<any>;
+  constructor(private sorter: Sorter) {
   }
    
   ngOnInit() {
     
   }
-
+  
+  delete(key: any) {
+    this.requests.remove(key);
+  }
+  
   sort(prop: string) {
-      this.sorter.sort(this.requests, prop);
+    
   }
 
 }

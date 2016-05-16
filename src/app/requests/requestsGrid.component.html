@@ -10,16 +10,18 @@
                             <th sort-by="repos" (sorted)="sort($event)">Repos</th>
                             <th sort-by="verifyDetails" (sorted)="sort($event)">Verify</th>
                             <th sort-by="isEmerygency" (sorted)="sort($event)">Urgency</th>
+                            <th>Delete</th>
                             <!-- Or you can do this directly rather than using sort-by directive -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let request of requests">
+                        <tr *ngFor="let request of requests | async">
                             <td><a [routerLink]="['/',request.id,'details']">{{ request.requestTime }}</a></td>
                             <td>{{ request.requester }}</td>
                             <td>{{ request.repos}}</td>
                             <td>{{ request.verifyDetails }}</td>
                             <td>{{ request.isUrgent }}</td>
+                            <td><button class="btn btn-danger" (click)="delete(request.$key)">Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
