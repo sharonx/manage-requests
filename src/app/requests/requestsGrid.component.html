@@ -15,13 +15,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let request of requests | async">
+                        <tr *ngFor="let request of requests">
                             <td><a [routerLink]="['/',request.id,'details']">{{ request.requestTime }}</a></td>
                             <td>{{ request.requester }}</td>
                             <td>{{ request.repos}}</td>
                             <td>{{ request.verifyDetails }}</td>
                             <td>{{ request.isUrgent }}</td>
-                            <td><button class="btn btn-danger" (click)="delete(request.$key)">Delete</button></td>
+                            <td><button class="btn btn-sm btn-danger" (click)="delete(request.$key)"><span class="glyphicon glyphicon-minus"></span></button></td>
                         </tr>
                     </tbody>
                 </table>

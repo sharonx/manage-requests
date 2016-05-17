@@ -8,6 +8,7 @@ import { FilterTextboxComponent } from '../filterTextbox/filterTextbox.component
 import { RequestsGridComponent } from './requestsGrid.component'
 import { newRequestComponent } from './newRequest.component'
 import { IRequests } from '../shared/interfaces';
+import { Subject } from 'rxjs/Subject';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({ 
@@ -23,6 +24,7 @@ export class RequestsComponent implements OnInit {
   filterText: string;
   requests: IRequests[] = [];
   filteredRequests: IRequests[] = [];
+  searchString = new Subject<string>();
   public realClose: Function;
   items: FirebaseListObservable<any[]>;
   
@@ -30,7 +32,11 @@ export class RequestsComponent implements OnInit {
 
   constructor(private dataService: DataService, af: AngularFire) { 
     
-    this.items = af.database.list('/items');
+     this.items = af.database.list('/items');
+     this.items.subscribe(items => {
+      this.filteredRequests = items; 
+     });
+     
   }
   
   ngOnInit() {
@@ -44,7 +50,11 @@ export class RequestsComponent implements OnInit {
   }
   
   filterChanged(data: string) {
-    
+     this.items.subscribe(items => {
+       this.filteredRequests = items.filter(item => {
+         return JSON.stringify(item).indexOf(data) > -1;
+       })
+    });
   }
 
 }
