@@ -19,6 +19,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class RequestsGridComponent implements OnInit {
 
   @Input() requests: FirebaseListObservable<any>;
+  @Input() items: FirebaseListObservable<any>;
   constructor(private sorter: Sorter) {
   }
    
@@ -27,7 +28,7 @@ export class RequestsGridComponent implements OnInit {
   }
   
   delete(key: any) {
-    this.requests.remove(key);
+    this.items.remove(key);
   }
   
   sort(prop: string) {
