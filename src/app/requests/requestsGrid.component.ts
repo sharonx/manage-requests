@@ -5,6 +5,8 @@ import { SortByDirective } from '../shared/directives/sortby.directive';
 import { Sorter } from '../shared/utils/sorter';
 import { TrackByService } from '../shared/services/trackby.service';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { IRequests } from '../shared/interfaces';
+import * as _ from 'lodash';
 
 @Component({ 
   moduleId: module.id,
@@ -18,7 +20,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class RequestsGridComponent implements OnInit {
 
-  @Input() requests: FirebaseListObservable<any>;
+  @Input() requests: IRequests[];
   @Input() items: FirebaseListObservable<any>;
   constructor(private sorter: Sorter) {
   }
@@ -32,7 +34,7 @@ export class RequestsGridComponent implements OnInit {
   }
   
   sort(prop: string) {
-    
+    this.requests = _.sortBy(this.requests, prop);
   }
 
 }
