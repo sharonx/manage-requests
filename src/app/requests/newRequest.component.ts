@@ -26,7 +26,7 @@ export class newRequestComponent {
   }
   
   close() {
-    this.newRequest.requestTime = new Date().toDateString();
+    this.newRequest.requestTime = new Date().toLocaleString();
     this.onRequestSubmit.emit(this.newRequest);
     console.log('new request', this.newRequest);
     this.newRequest = {};

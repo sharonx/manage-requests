@@ -7,7 +7,8 @@
     '@angular':                   'node_modules/@angular',
     'firebase':                   'node_modules/firebase/lib/firebase-web.js',
     'angularfire2':               'node_modules/angularfire2',
-    'ng2-bs3-modal':              'node_modules/ng2-bs3-modal'
+    'ng2-bs3-modal':              'node_modules/ng2-bs3-modal',
+    'lodash':                      'node_modules/lodash'  
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -15,7 +16,8 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angularfire2':               { defaultExtension: 'js', main: 'angularfire2.js' },
-    'ng2-bs3-modal':              { defaultExtension: 'js', main: 'ng2-bs3-modal.js'}
+    'ng2-bs3-modal':              { defaultExtension: 'js', main: 'ng2-bs3-modal.js'},
+    'lodash':                      { defaultExtension: 'js', main: 'index.js'}
   };
 
   var packageNames = [

@@ -10,6 +10,7 @@ import { newRequestComponent } from './newRequest.component'
 import { IRequests } from '../shared/interfaces';
 import { Subject } from 'rxjs/Subject';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import * as _ from 'lodash';
 
 @Component({ 
   moduleId: module.id,
@@ -34,7 +35,7 @@ export class RequestsComponent implements OnInit {
     
      this.items = af.database.list('/items');
      this.items.subscribe(items => {
-      this.filteredRequests = items; 
+       this.filteredRequests = _.sortBy(items, 'requestTime'); 
      });
      
   }
