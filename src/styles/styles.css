@@ -244,7 +244,13 @@ filter-textbox {
 }
 
 form {
-	width:50%;
+	width:90%;
+}
+
+.section-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
 }
 
 .editForm .ng-invalid {

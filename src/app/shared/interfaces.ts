@@ -2,7 +2,7 @@ export interface IRequests {
     id?: number,
     requester: string,
     requestTime: string,
-    repos: string,
+    repos: Array<Object>,
     verifyDetails: string,
     isEmergency: boolean
 }

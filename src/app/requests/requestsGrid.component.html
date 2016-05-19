@@ -18,7 +18,7 @@
                         <tr *ngFor="let request of requests">
                             <td><a [routerLink]="['/',request.id,'details']">{{ request.requestTime }}</a></td>
                             <td>{{ request.requester }}</td>
-                            <td>{{ request.repos}}</td>
+                            <td><span *ngFor="let repo of request.repos"><b>{{repo.name}}:</b> {{repo.branch}}<br/></span></td>
                             <td>{{ request.verifyDetails }}</td>
                             <td>{{ request.isUrgent }}</td>
                             <td><button class="btn btn-sm btn-danger" (click)="delete(request.$key)"><span class="glyphicon glyphicon-minus"></span></button></td>

@@ -12,9 +12,15 @@
           </div>
           <div class="form-group">
             <label for="repos">Repos</label>
-            <input type="text" class="form-control" name="repos" [(ngModel)]="newRequest.repos">
-          </div>
-          <div class="form-group">
+            <div class="form-inline alert section-group " *ngFor="let repo of newRequest.repos">
+              <label>Name</label>
+              <input type="text" class="form-control" [(ngModel)]="repo.name">
+              <label>Branch</label>
+              <input type="text" class="form-control" [(ngModel)]="repo.branch">
+            </div>
+            <button class="btn btn-success" (click)="addRepo()">Add</button>
+          </div>  
+          <div class="form-group ">
             <label for="verify">Verify Steps</label>
             <input type="text" class="form-control" name="verify" [(ngModel)]="newRequest.verifyDetails">
           </div>

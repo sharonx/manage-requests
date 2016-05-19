@@ -25,6 +25,14 @@ export class newRequestComponent {
     this.modal.dismiss();
   }
   
+  addRepo() {
+    if (!this.newRequest.repos) {
+      this.newRequest.repos = [{name: '', branch: ''}];
+    } else{
+      this.newRequest.repos.push({name: '', branch: ''});
+    }
+  }
+  
   close() {
     this.newRequest.requestTime = new Date().toLocaleString();
     this.onRequestSubmit.emit(this.newRequest);
