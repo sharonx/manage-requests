@@ -33,6 +33,11 @@ export class newRequestComponent {
     }
   }
   
+  deleteRepo(repo: Object) {
+    this.newRequest.repos = this.newRequest.repos.filter(function(item) {
+      return item !== repo;
+    });
+  }
   close() {
     this.newRequest.requestTime = new Date().toLocaleString();
     this.onRequestSubmit.emit(this.newRequest);

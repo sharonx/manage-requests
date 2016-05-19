@@ -17,6 +17,7 @@
               <input type="text" class="form-control" [(ngModel)]="repo.name">
               <label>Branch</label>
               <input type="text" class="form-control" [(ngModel)]="repo.branch">
+              <button class="btn btn-sm btn-danger" (click)="deleteRepo(repo)"><span class="glyphicon glyphicon-minus"></span></button>
             </div>
             <button class="btn btn-success" (click)="addRepo()">Add</button>
           </div>  
