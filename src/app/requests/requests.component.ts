@@ -24,6 +24,7 @@ export class RequestsComponent implements OnInit {
   title: string;
   filterText: string;
   requests: IRequests[] = [];
+  username: string;
   filteredRequests: IRequests[] = [];
   searchString = new Subject<string>();
   public realClose: Function;
@@ -35,7 +36,7 @@ export class RequestsComponent implements OnInit {
     if (!this.userService.getUser() || this.userService.getUser() == '') {
       this.router.navigate(['/']);
     } 
-    
+     this.username = this.userService.getUser();
      this.items = af.database.list('/items');
      this.items.subscribe(items => {
        this.filteredRequests = _.sortBy(items, 'requestTime'); 
