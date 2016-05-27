@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes, Router } from '@angular/router';
 
 import { RequestsComponent } from './requests/requests.component';
+import { LoginComponent } from './login/login.component';
 import { APP_PROVIDERS } from './app.providers';
 
 @Component({ 
@@ -12,8 +13,8 @@ import { APP_PROVIDERS } from './app.providers';
   providers: [ APP_PROVIDERS ]
 })
 @Routes([
-  { path: '/', component: RequestsComponent },
-  { path: '/requests', component: RequestsComponent }
+  { path: '/', component: LoginComponent },
+  { path: '/requests', component: RequestsComponent}
 ])
 export class AppComponent {
   

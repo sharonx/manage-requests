@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-//import { Observable } from 'rxjs/Observable';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 import { DataService } from '../shared/services/data.service';
+import { UserService } from '../shared/services/user.service';
 import { FilterTextboxComponent } from '../filterTextbox/filterTextbox.component';
-// import { RequestsCardComponent } from './requestsCard.component';
 import { RequestsGridComponent } from './requestsGrid.component'
 import { newRequestComponent } from './newRequest.component'
 import { IRequests } from '../shared/interfaces';
@@ -17,8 +16,9 @@ import * as _ from 'lodash';
   selector: 'requests', 
   templateUrl: 'requests.component.html',
   directives: [ROUTER_DIRECTIVES, FilterTextboxComponent, 
-               RequestsGridComponent, newRequestComponent]
+               RequestsGridComponent, newRequestComponent]           
 })
+
 export class RequestsComponent implements OnInit {
 
   title: string;
@@ -31,7 +31,10 @@ export class RequestsComponent implements OnInit {
   
   @ViewChild(newRequestComponent) newRequest: any;
 
-  constructor(private dataService: DataService, af: AngularFire) { 
+  constructor(private dataService: DataService, af: AngularFire, private router: Router, private userService: UserService) {
+    if (!this.userService.getUser() || this.userService.getUser() == '') {
+      this.router.navigate(['/']);
+    } 
     
      this.items = af.database.list('/items');
      this.items.subscribe(items => {

@@ -5,6 +5,7 @@ import { ROUTER_PROVIDERS } from '@angular/router';
 
 import { Sorter } from './shared/utils/sorter';
 import { DataService } from './shared/services/data.service';
+import { UserService } from './shared/services/user.service';
 import { TrackByService } from './shared/services/trackby.service';
 
 export const APP_PROVIDERS = [
@@ -14,5 +15,6 @@ export const APP_PROVIDERS = [
     FORM_PROVIDERS,
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
+    UserService
     //bind(LocationStrategy).toClass(HashLocationStrategy)
 ];

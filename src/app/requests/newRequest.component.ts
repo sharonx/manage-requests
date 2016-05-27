@@ -1,4 +1,4 @@
-import { Component, ViewChild, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ViewChild, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { IRequests } from '../shared/interfaces';
 
@@ -12,13 +12,14 @@ export class newRequestComponent {
   @ViewChild('modal')
   modal: ModalComponent;
   newRequest: any = {};
+  @Input() reqeuster: string;
   @Output() onRequestSubmit= new EventEmitter();
   constructor() { 
     
   }
   
-  OnInit() {
-    this.newRequest = {};
+  ngOnInit() {
+    this.newRequest = {requester: this.reqeuster};
   }
 
   dismiss() {
@@ -34,7 +35,7 @@ export class newRequestComponent {
   }
   
   deleteRepo(repo: Object) {
-    this.newRequest.repos = this.newRequest.repos.filter(function(item) {
+    this.newRequest.repos = this.newRequest.repos.filter(function(item: any) {
       return item !== repo;
     });
   }

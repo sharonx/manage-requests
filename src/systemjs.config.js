@@ -6,7 +6,7 @@
     'rxjs':                       'node_modules/rxjs',
     '@angular':                   'node_modules/@angular',
     'firebase':                   'node_modules/firebase/lib/firebase-web.js',
-    'angularfire2':               'node_modules/angularfire2',
+    'angularfire2':               'node_modules/angularfire2/dist',
     'ng2-bs3-modal':              'node_modules/ng2-bs3-modal',
     'lodash':                      'node_modules/lodash'  
   };
