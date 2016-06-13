@@ -7,6 +7,7 @@ import { TrackByService } from '../shared/services/trackby.service';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { IRequests } from '../shared/interfaces';
 import * as _ from 'lodash';
+import { UserService } from '../shared/services/user.service';
 
 @Component({ 
   moduleId: module.id,
@@ -16,13 +17,18 @@ import * as _ from 'lodash';
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
-  changeDetection: ChangeDetectionStrategy.OnPush 
+  changeDetection: ChangeDetectionStrategy.OnPush ,
 })
 export class RequestsGridComponent implements OnInit {
 
   @Input() requests: IRequests[];
   @Input() items: FirebaseListObservable<any>;
-  constructor(private sorter: Sorter) {
+  username: string;
+  sortAsc: boolean = true;
+  oldProp: string;
+
+  constructor(private sorter: Sorter, private userService: UserService) {
+    this.username = this.userService.getUser();
   }
    
   ngOnInit() {
@@ -34,7 +40,19 @@ export class RequestsGridComponent implements OnInit {
   }
   
   sort(prop: string) {
-    this.requests = _.sortBy(this.requests, prop);
+    if (prop !== this.oldProp) {
+      this.sortAsc = true;
+    } else {
+      this.sortAsc = !this.sortAsc
+    }
+
+    if (this.sortAsc) {
+      this.requests = _.sortBy(this.requests, prop);
+    }
+    else {
+      this.requests = _.sortBy(this.requests, prop).reverse();
+    }
+    this.oldProp = prop; 
   }
 
 }
