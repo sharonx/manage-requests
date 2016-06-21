@@ -37,11 +37,7 @@ export class RequestsComponent implements OnInit {
       this.router.navigate(['/']);
     } 
      this.username = this.userService.getUser();
-     this.items = af.database.list('/items', {
-       query: {
-         limitToLast: 20
-       }
-     });
+     this.items = af.database.list('/items');
      this.items.subscribe(items => {
        this.filteredRequests = _.sortBy(items, 'requestTime'); 
      });
