@@ -8,7 +8,7 @@
         <form novalidate >
           <div class="form-group">
             <label for="name">Requester</label>
-            <input type="text" class="form-control" required name="name" [(ngModel)]="newRequest.requester" disabled>
+            <input type="text" class="form-control" required name="name"  [(ngModel)]="newRequest.requester" [value]="requester" disabled>
           </div>
           <div class="form-group">
             <label for="repos">Repos</label>

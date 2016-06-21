@@ -1,6 +1,7 @@
 import { Component, ViewChild, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { MODAL_DIRECTIVES, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { IRequests } from '../shared/interfaces';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   moduleId: module.id,
@@ -12,14 +13,15 @@ export class newRequestComponent {
   @ViewChild('modal')
   modal: ModalComponent;
   newRequest: any = {};
-  @Input() reqeuster: string;
+  requester: string;
   @Output() onRequestSubmit= new EventEmitter();
-  constructor() { 
-    
+  constructor(private userService: UserService) { 
+    this.requester = this.userService.getUser();
+    this.newRequest = {requester: this.requester};
   }
   
   ngOnInit() {
-    this.newRequest = {requester: this.reqeuster};
+    
   }
 
   dismiss() {
@@ -43,7 +45,7 @@ export class newRequestComponent {
     this.newRequest.requestTime = new Date().toLocaleString();
     this.onRequestSubmit.emit(this.newRequest);
     console.log('new request', this.newRequest);
-    this.newRequest = {};
+    this.newRequest = {requester: this.requester};
     this.modal.close();
   }
 }

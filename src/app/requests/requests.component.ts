@@ -24,11 +24,10 @@ export class RequestsComponent implements OnInit {
   title: string;
   filterText: string;
   requests: IRequests[] = [];
-  username: string;
   filteredRequests: IRequests[] = [];
   searchString = new Subject<string>();
   public realClose: Function;
-  items: FirebaseListObservable<any[]>;
+  items: FirebaseListObservable<IRequests[]>;
   
   @ViewChild(newRequestComponent) newRequest: any;
 
@@ -36,7 +35,6 @@ export class RequestsComponent implements OnInit {
     if (!this.userService.getUser() || this.userService.getUser() == '') {
       this.router.navigate(['/']);
     } 
-     this.username = this.userService.getUser();
      this.items = af.database.list('/items');
      this.items.subscribe(items => {
        this.filteredRequests = _.sortBy(items, 'requestTime'); 
@@ -50,7 +48,7 @@ export class RequestsComponent implements OnInit {
   }
 
 
-  onRequestSubmit(newRequest: any){
+  onRequestSubmit(newRequest: IRequests){
      this.items.push(newRequest);
   }
   
